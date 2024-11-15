@@ -1,6 +1,10 @@
 from flask import Flask, render_template, request, jsonify, send_from_directory
 import os
-from logistic_regression_solution import do_experiments
+from logistic_regression import do_experiments
+
+import matplotlib # Import Matplotlib without loading pyplot
+matplotlib.use('Agg') # Set the backend to Agg for non-GUI environments
+import matplotlib.pyplot as plt # Now import pyplot with the Agg backend in effect
 
 app = Flask(__name__)
 
@@ -15,6 +19,9 @@ def run_experiment():
     start = float(request.json['start'])
     end = float(request.json['end'])
     step_num = int(request.json['step_num'])
+
+
+
 
     # Run the experiment with the provided parameters
     do_experiments(start, end, step_num)
